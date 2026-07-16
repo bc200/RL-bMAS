@@ -1,0 +1,51 @@
+session:
+  id: "2026-06-01_001"
+  timestamp: "2026-06-01T11:58+08:00"
+  summary: "Reviewed DebateQA AF ablation results and identified better AF validation task families."
+
+events_logged:
+  - type: experiment
+    id: "N02"
+    provenance: ai-executed
+    summary: "Inspected local DebateQA dev20 DeepSeek ablation summaries, graph details, and row-level metrics."
+  - type: claim
+    id: "C01"
+    provenance: user
+    summary: "DebateQA plus a strong multi-round DeepSeek baseline is weak as the primary AF validation task."
+  - type: pivot
+    id: "N03"
+    provenance: user
+    summary: "Move AF validation toward long-text, multi-turn, citation-grounded, and memory-management tasks."
+  - type: claim
+    id: "C02"
+    provenance: user
+    summary: "AF graph extraction should fit tasks where structure, provenance, or memory compression is the task signal."
+
+ai_actions:
+  - action: "Read OASIS ablation-AF outputs, local DebateQA README, experiment code, prompts, and research notes; searched current benchmark sources."
+    provenance: ai-executed
+    files_changed:
+      - "ara/PAPER.md"
+      - "ara/logic/problem.md"
+      - "ara/logic/claims.md"
+      - "ara/logic/solution/heuristics.md"
+      - "ara/trace/exploration_tree.yaml"
+      - "ara/trace/sessions/session_index.yaml"
+      - "ara/trace/sessions/2026-06-01_001.yaml"
+      - "ara/evidence/README.md"
+      - "ara/staging/observations.yaml"
+
+claims_touched:
+  - id: "C01"
+    action: created
+    provenance: user
+  - id: "C02"
+    action: created
+    provenance: user
+
+open_threads:
+  - "Choose the first replacement task family and implement a dataset adapter."
+  - "Test AF graph plus evidence citations instead of accepted-only grounded summaries."
+
+ai_suggestions_pending:
+  - "Prioritize KIALO-PRIME or VivesDebate for graph-structure validation, L-CiteEval/LongCite for citation grounding, and LongMemEval-V2/STATE-Bench for memory/context management."

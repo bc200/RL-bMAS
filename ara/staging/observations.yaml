@@ -1,0 +1,8 @@
+observations:
+  - id: O01
+    timestamp: "2026-06-01T11:58+08:00"
+    provenance: ai-suggested
+    content: "The current AF prompt emphasizes accepted arguments first, which can conflict with DebateQA's objective of covering all legitimate partial perspectives."
+    context: "Reviewing llmmerge graph details and row-level answers."
+    potential_type: heuristic
+    promoted: true

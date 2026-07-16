@@ -1,0 +1,38 @@
+session:
+  id: "2026-06-02_004"
+  timestamp: "2026-06-02T11:25+08:00"
+  summary: "Added all-dataset decision suite orchestration."
+
+events_logged:
+  - type: experiment
+    id: "N10"
+    provenance: ai-executed
+    summary: "Created run_decision_suite.py and verified a mock --limit 1 run across all six decision adapters."
+  - type: claim
+    id: "C08"
+    provenance: ai-executed
+    summary: "Advanced existing implementation claim with suite-runner proof while keeping real API evaluation pending."
+
+ai_actions:
+  - action: "Added suite-level runner, documented one-command real DeepSeek benchmark usage, generated decision_suite_report.md through mock orchestration, and verified syntax."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/run_decision_suite.py"
+      - "OASIS/ablation-AF/README.md"
+      - "OASIS/ablation-AF/decision_suite_report.md"
+      - "ara/logic/claims.md"
+      - "ara/trace/exploration_tree.yaml"
+      - "ara/trace/sessions/session_index.yaml"
+      - "ara/trace/sessions/2026-06-02_004.yaml"
+
+claims_touched:
+  - id: "C08"
+    action: advanced
+    provenance: ai-executed
+
+open_threads:
+  - "Run run_decision_suite.py without --mock-llm after setting DEEPSEEK_API_KEY and providing external dataset paths."
+  - "Use the generated per-folder test_report.md files to compare direct_answer, AF/QBAF, and multi_agent metrics on real outputs."
+
+ai_suggestions_pending:
+  - "Use --require-inputs for final reported experiments so sample-file smoke runs are not confused with real benchmark runs."

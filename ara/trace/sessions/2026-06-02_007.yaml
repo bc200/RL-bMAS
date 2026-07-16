@@ -1,0 +1,56 @@
+session:
+  id: "2026-06-02_007"
+  timestamp: "2026-06-02T15:35+08:00"
+  summary: "Pivoted AF validation to raw long-text tasks and downloaded complete datasets."
+
+events_logged:
+  - type: pivot
+    id: "N13"
+    provenance: user
+    summary: "User rejected short/regularized examples as primary AF tests and requested raw court/forum text plus LongMemEval memory-first formalization."
+  - type: experiment
+    id: "N14"
+    provenance: ai-executed
+    summary: "Added raw SCOTUS, CMV, and IQ2 adapters; revised LongMemEval; downloaded complete raw datasets; ran mock smoke tests."
+  - type: claim
+    id: "C09"
+    provenance: user
+    summary: "Raw long-text data is the stronger primary AF validation target."
+  - type: claim
+    id: "C10"
+    provenance: user
+    summary: "LongMemEval-V2 graph arms should formalize all memory before answering."
+
+ai_actions:
+  - action: "Implemented raw_text_common.py plus legal_scotus_raw, online_cmv_raw, and public_iq2_raw adapters; changed LongMemEval-V2 to use all memory sessions as formalization context; added download_raw_datasets.py; downloaded full SCOTUS, CMV, IQ2, and LongMemEval-V2 files; updated README/recommendations/suite."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/raw_text_common.py"
+      - "OASIS/ablation-AF/legal_scotus_raw/"
+      - "OASIS/ablation-AF/online_cmv_raw/"
+      - "OASIS/ablation-AF/public_iq2_raw/"
+      - "OASIS/ablation-AF/memory_longmemeval_v2/run_longmemeval_v2.py"
+      - "OASIS/ablation-AF/download_raw_datasets.py"
+      - "OASIS/ablation-AF/raw_dataset_manifest.json"
+      - "OASIS/ablation-AF/run_decision_suite.py"
+      - "OASIS/ablation-AF/README.md"
+      - "OASIS/ablation-AF/af_decision_benchmark_recommendations.md"
+      - "ara/logic/claims.md"
+      - "ara/trace/exploration_tree.yaml"
+      - "ara/trace/sessions/session_index.yaml"
+      - "ara/trace/sessions/2026-06-02_007.yaml"
+
+claims_touched:
+  - id: "C09"
+    action: added
+    provenance: user
+  - id: "C10"
+    action: added
+    provenance: user
+
+open_threads:
+  - "Run real DeepSeek experiments on the raw adapters with --llm-formalizer --llm-relations and non-trivial limits."
+  - "Improve the rule-based formalizer or rely on LLM formalization for raw transcripts, since rule extraction creates many unsupported candidate nodes and few attacks."
+
+ai_suggestions_pending:
+  - "Use SCOTUS raw, CMV raw, IQ2 raw, and LongMemEval-V2 as the primary AF validation set; keep LAR-ECHR, DebateBench, and DebateQA mainly as controls."

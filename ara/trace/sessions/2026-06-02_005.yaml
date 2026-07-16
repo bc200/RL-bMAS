@@ -1,0 +1,38 @@
+session:
+  id: "2026-06-02_005"
+  timestamp: "2026-06-02T11:30+08:00"
+  summary: "Added suite-level performance comparison aggregation."
+
+events_logged:
+  - type: experiment
+    id: "N11"
+    provenance: ai-executed
+    summary: "Extended decision_suite_report.md with a Performance Comparison table using per-adapter summary metrics and deltas against direct_answer."
+  - type: claim
+    id: "C08"
+    provenance: ai-executed
+    summary: "Advanced the implementation claim to include aggregate direct-vs-AF/QBAF/multi-agent comparison reporting."
+
+ai_actions:
+  - action: "Patched run_decision_suite.py to load per-adapter summary JSON, render suite-level comparison metrics, keep console output compact, updated README, and reran full mock suite plus syntax checks."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/run_decision_suite.py"
+      - "OASIS/ablation-AF/README.md"
+      - "OASIS/ablation-AF/decision_suite_report.md"
+      - "ara/logic/claims.md"
+      - "ara/trace/exploration_tree.yaml"
+      - "ara/trace/sessions/session_index.yaml"
+      - "ara/trace/sessions/2026-06-02_005.yaml"
+
+claims_touched:
+  - id: "C08"
+    action: advanced
+    provenance: ai-executed
+
+open_threads:
+  - "Real DeepSeek evaluation remains blocked until DEEPSEEK_API_KEY or equivalent API key is available."
+  - "Final benchmark reporting also requires external dataset paths for each adapter, passed through run_decision_suite.py with --require-inputs."
+
+ai_suggestions_pending:
+  - "After real runs, inspect decision_suite_report.md first for suite-level direct-vs-graph deltas, then drill into each folder's test_report.md and prompt trace JSONL."

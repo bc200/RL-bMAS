@@ -1,0 +1,61 @@
+session:
+  id: "2026-06-02_008"
+  timestamp: "2026-06-02T20:55+08:00"
+  summary: "Implemented and ran real-model MALLM blackboard and raw long-text AF checks."
+
+events_logged:
+  - type: experiment
+    id: "N15"
+    provenance: ai-executed
+    summary: "Ran real DeepSeek checks for raw long-text tasks and MALLM blackboard direct-vs-AF decisions."
+  - type: claim
+    id: "C11"
+    provenance: ai-suggested
+    summary: "MALLM blackboard state is a plausible AF formalization target before final decision."
+  - type: claim
+    id: "C12"
+    provenance: ai-suggested
+    summary: "LongMemEval exact-string metrics can understate semantic correctness."
+  - type: heuristic
+    id: "H05"
+    provenance: ai-suggested
+    summary: "Use semantic equivalence or alias expansion for memory-answer evaluation."
+
+ai_actions:
+  - action: "Added run_mallm_blackboard.py to build controller + blackboard multi-agent QA episodes over GPQA/MMLU-Pro."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/mallm_gpqa_mmlu_pro/run_mallm_blackboard.py"
+      - "OASIS/ablation-AF/mallm_gpqa_mmlu_pro/README.md"
+  - action: "Extended run_decision_suite.py with a blackboard command style and blackboard-specific limit/round options."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/run_decision_suite.py"
+  - action: "Ran real DeepSeek small tests for raw long-text datasets and MALLM blackboard, then wrote a notes file."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/real_model_small_run_notes.md"
+      - "OASIS/ablation-AF/decision_suite_raw_real_small.md"
+      - "OASIS/ablation-AF/decision_suite_mallm_blackboard_real_small.md"
+
+claims_touched:
+  - id: C09
+    action: confirmed
+    provenance: user
+  - id: C10
+    action: confirmed
+    provenance: user
+  - id: C11
+    action: created
+    provenance: ai-suggested
+  - id: C12
+    action: created
+    provenance: ai-suggested
+
+open_threads:
+  - "Scale raw long-text and MALLM blackboard tests beyond limit-1 samples."
+  - "Add semantic equivalence judging or stronger alias normalization for LongMemEval-V2."
+  - "Track graph-quality diagnostics because MALLM AF traces showed occasional relation-direction noise."
+
+ai_suggestions_pending:
+  - "Treat MALLM blackboard AF as a context-management benchmark rather than as a pre-existing transcript argument-mining benchmark."

@@ -1,0 +1,50 @@
+session:
+  id: "2026-06-02_001"
+  timestamp: "2026-06-02T10:29+08:00"
+  summary: "Refined AF decision benchmark selection toward court and public debate data."
+
+events_logged:
+  - type: decision
+    id: "N06"
+    provenance: user
+    summary: "Peer review rating and PeerSum-style labels are subjective, so they should be secondary or QAF/QBAF experiments."
+  - type: experiment
+    id: "N07"
+    provenance: ai-executed
+    summary: "Searched and added court/legal, public debate, online discussion, and generated multi-agent transcript candidates."
+  - type: claim
+    id: "C05"
+    provenance: user
+    summary: "Peer review ratings are not the cleanest zero-shot decision benchmark."
+  - type: claim
+    id: "C06"
+    provenance: user
+    summary: "Court and public debate data are stronger primary AF decision targets."
+
+ai_actions:
+  - action: "Updated benchmark recommendation document and research trace with revised priority and modeling notes."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/af_decision_benchmark_recommendations.md"
+      - "ara/logic/claims.md"
+      - "ara/trace/exploration_tree.yaml"
+      - "ara/trace/sessions/session_index.yaml"
+      - "ara/trace/sessions/2026-06-02_001.yaml"
+
+claims_touched:
+  - id: "C04"
+    action: revised
+    provenance: ai-suggested
+  - id: "C05"
+    action: created
+    provenance: user
+  - id: "C06"
+    action: created
+    provenance: user
+
+open_threads:
+  - "Choose the first implementation target: LAR-ECHR, SCOTUS oral arguments, DebateBench, or Intelligence Squared."
+  - "Define whether OASIS will use basic AF first or implement QAF/QBAF for weighted legal/debate decisions."
+
+ai_suggestions_pending:
+  - "Start with LAR-ECHR for a small, clean legal reasoning adapter, then scale to SCOTUS oral arguments or DebateBench."

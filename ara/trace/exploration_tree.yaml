@@ -1,0 +1,243 @@
+tree:
+  - id: N01
+    type: question
+    title: "Does AF graph extraction improve DebateQA answers?"
+    provenance: user
+    timestamp: "2026-06-01T11:58+08:00"
+    description: >
+      Evaluate whether OASIS AF graph extraction is useful on DebateQA with a
+      DeepSeek multi-round setup.
+    children:
+      - id: N02
+        type: experiment
+        title: "Inspect DebateQA dev20 DeepSeek ablation results"
+        provenance: ai-executed
+        timestamp: "2026-06-01T11:58+08:00"
+        result: >
+          The latest llmmerge run ranks multi_round best on official P.D.
+          (6.6617), raw_text second (7.0474), and af_graph worst (9.6058).
+          Local coverage also favors multi_round, and row-level diagnostics show
+          multi_round beating af_graph on perspective coverage for all 20
+          inspected records.
+        evidence: [C01, "OASIS/ablation-AF/outputs/debateqa_dev20_llmmerge_deepseek_real_summary.md"]
+        children:
+          - id: N03
+            type: pivot
+            title: "Shift AF validation toward long-context and memory tasks"
+            provenance: user
+            timestamp: "2026-06-01T11:58+08:00"
+            from: "DebateQA P.D. as primary AF validation"
+            to: "Long-text, multi-turn, citation-grounded, and memory-management tasks"
+            trigger: >
+              Strong multi-round answers are already concise and cover DebateQA
+              perspectives, while grounded-extension AF can over-compress
+              legitimate viewpoints.
+            children:
+              - id: N04
+                type: decision
+                title: "Prioritize graph-conditioned decision tasks"
+                provenance: user
+                timestamp: "2026-06-01T16:20+08:00"
+                choice: >
+                  Evaluate AF as a formalized intermediate representation that
+                  helps downstream decision-making after mining/construction,
+                  instead of making argument mining itself the main benchmark.
+                alternatives:
+                  - "Use KIALO-PRIME primarily as an argument-mining benchmark."
+                evidence: >
+                  User clarified that the innovation is AF graph integration
+                  for decision support, and requested benchmarks with existing
+                  decision labels or constructible graph-conditioned decisions.
+                children:
+                  - id: N05
+                    type: experiment
+                    title: "Survey AF decision benchmark families"
+                    provenance: ai-executed
+                    timestamp: "2026-06-01T16:20+08:00"
+                    result: >
+                      Created an AF decision benchmark recommendation document
+                      ranking peer review, RAG/claim verification, memory/state,
+                      generated-agent transcripts, and KIALO-derived diagnostics.
+                    evidence: [C03, C04, "OASIS/ablation-AF/af_decision_benchmark_recommendations.md"]
+                    children:
+                      - id: N06
+                        type: decision
+                        title: "Demote peer review rating datasets"
+                        provenance: user
+                        timestamp: "2026-06-02T10:29+08:00"
+                        choice: >
+                          Treat peer review rating/meta-review datasets as
+                          secondary QAF/QBAF experiments rather than primary
+                          basic-AF decision benchmarks.
+                        alternatives:
+                          - "Use PeerSum or review rating prediction as a primary zero-shot decision task."
+                        evidence: >
+                          User noted that review ratings are subjective and that
+                          reviewer-author argument structures often require
+                          confidence/strength modeling.
+                        children:
+                          - id: N07
+                            type: experiment
+                            title: "Search court and debate decision data"
+                            provenance: ai-executed
+                            timestamp: "2026-06-02T10:29+08:00"
+                            result: >
+                              Updated the recommendation document with court
+                              oral-argument, ECHR legal reasoning, competitive
+                              debate, public debate, online discussion, and
+                              generated multi-agent transcript datasets.
+                            evidence: [C05, C06, "OASIS/ablation-AF/af_decision_benchmark_recommendations.md"]
+                            children:
+                              - id: N08
+                                type: experiment
+                                title: "Implement modular AF decision adapters"
+                                provenance: ai-executed
+                                timestamp: "2026-06-02T11:03+08:00"
+                                result: >
+                                  Added a shared AF decision runner plus separate
+                                  dataset folders and smoke samples for
+                                  LAR-ECHR, DebateBench, PeerRead, RAGTruth,
+                                  LongMemEval-V2, and MALLM GPQA/MMLU-Pro.
+                                  Syntax checks and sample mock runs completed.
+                                evidence: [C07, "OASIS/ablation-AF/decision_common.py"]
+                                children:
+                                  - id: N09
+                                    type: experiment
+                                    title: "Add DeepSeek direct and multi-agent decision baselines"
+                                    provenance: ai-executed
+                                    timestamp: "2026-06-02T11:19+08:00"
+                                    result: >
+                                      Updated the shared decision runner to default
+                                      decision adapters to deepseek-chat, compare
+                                      direct_answer against arguments_only, af_graph,
+                                      qbaf_graph, and multi_agent arms, generate
+                                      folder-local test_report.md files, and tighten
+                                      categorical scoring against accidental substring
+                                      hits. Mock smoke runs and in-memory syntax checks
+                                      passed for all six adapters. Real DeepSeek API
+                                      tests remain pending because no API key was
+                                      present in the environment.
+                                    evidence: [C08, "OASIS/ablation-AF/decision_common.py", "OASIS/ablation-AF/*/test_report.md"]
+                                    children:
+                                      - id: N10
+                                        type: experiment
+                                        title: "Add all-dataset decision suite runner"
+                                        provenance: ai-executed
+                                        timestamp: "2026-06-02T11:25+08:00"
+                                        result: >
+                                          Added run_decision_suite.py to execute all
+                                          six decision adapters with a shared
+                                          DeepSeek/direct/AF/QBAF/multi-agent
+                                          configuration, optional external input
+                                          mappings, --require-inputs, and an
+                                          aggregate decision_suite_report.md.
+                                          A mock --limit 1 suite run passed for all
+                                          six adapters. Real API evaluation remains
+                                          pending until an API key and external
+                                          dataset paths are available.
+                                        evidence: [C08, "OASIS/ablation-AF/run_decision_suite.py", "OASIS/ablation-AF/decision_suite_report.md"]
+                                        children:
+                                          - id: N11
+                                            type: experiment
+                                            title: "Aggregate suite-level baseline comparisons"
+                                            provenance: ai-executed
+                                            timestamp: "2026-06-02T11:30+08:00"
+                                            result: >
+                                              Extended the suite report to parse
+                                              each adapter summary JSON and render
+                                              a Performance Comparison table with
+                                              accuracy and token-F1 deltas against
+                                              direct_answer for all arms. A full
+                                              mock --limit 1 suite run passed and
+                                              regenerated the aggregate report.
+                                              Real DeepSeek metrics remain pending
+                                              because no API key is configured.
+                                            evidence: [C08, "OASIS/ablation-AF/decision_suite_report.md"]
+                                            children:
+                                              - id: N12
+                                                type: experiment
+                                                title: "Run real DeepSeek suite on all decision samples"
+                                                provenance: ai-executed
+                                                timestamp: "2026-06-02T14:36+08:00"
+                                                result: >
+                                                  Extracted the deepseek-chat
+                                                  API credentials and base URL
+                                                  from agent_system blackboard
+                                                  utils through controlled local
+                                                  credential discovery, then ran
+                                                  run_decision_suite.py with
+                                                  --use-local-credentials and
+                                                  --limit 1. All six dataset
+                                                  adapters completed with
+                                                  mock_llm=False, use_local_credentials=True,
+                                                  and five arms per dataset:
+                                                  direct_answer, arguments_only,
+                                                  af_graph, qbaf_graph, and
+                                                  multi_agent.
+                                                evidence: [C08, "OASIS/ablation-AF/decision_suite_report.md", "OASIS/ablation-AF/*/test_report.md"]
+                                                children:
+                                                  - id: N13
+                                                    type: pivot
+                                                    title: "Move primary AF tests to raw long-text tasks"
+                                                    provenance: user
+                                                    timestamp: "2026-06-02T15:35+08:00"
+                                                    from: "Regularized argument-like datasets such as DebateQA, LAR-ECHR samples, and DebateBench-style samples"
+                                                    to: "Raw oral-argument transcripts, raw forum threads, raw public debates, and LongMemEval memory formalization"
+                                                    trigger: >
+                                                      User observed that the existing examples were too short
+                                                      and too pre-structured, while LongMemEval should formalize
+                                                      all memories before answering.
+                                                    children:
+                                                      - id: N14
+                                                        type: experiment
+                                                        title: "Implement raw long-text adapters and full dataset downloads"
+                                                        provenance: ai-executed
+                                                        timestamp: "2026-06-02T15:35+08:00"
+                                                        result: >
+                                                          Added SCOTUS raw oral-argument, CMV Winning Arguments
+                                                          raw thread, and IQ2 raw public debate adapters; changed
+                                                          LongMemEval-V2 to pass all memory sessions as raw
+                                                          formalization context instead of pre-made memory
+                                                          arguments; downloaded complete SCOTUS, CMV, IQ2, and
+                                                          LongMemEval-V2 files into the corresponding folders.
+                                                          Mock limit-1 runs passed for the raw adapters and the
+                                                          suite recognized the new dataset keys.
+                                                        evidence: [C09, C10, "OASIS/ablation-AF/download_raw_datasets.py", "OASIS/ablation-AF/raw_dataset_manifest.json"]
+                                                        children:
+                                                          - id: N15
+                                                            type: experiment
+                                                            title: "Run raw long-text and MALLM blackboard real-model checks"
+                                                            provenance: ai-executed
+                                                            timestamp: "2026-06-02T20:55+08:00"
+                                                            result: >
+                                                              Added a MALLM blackboard runner that builds a fresh
+                                                              controller + blackboard multi-agent episode before
+                                                              final QA decision, then compares direct blackboard
+                                                              judging against AF-graph judging. Real DeepSeek
+                                                              small runs completed for four raw long-text tasks
+                                                              and for one GPQA plus one MMLU-Pro blackboard item.
+                                                              Raw results: IQ2 improved from direct accuracy 0.0
+                                                              to AF accuracy 1.0; CMV tied at 1.0; SCOTUS tied
+                                                              at 0.0; LongMemEval string metrics scored both arms
+                                                              0.0 despite semantically close GPS-system answers.
+                                                              MALLM blackboard accuracy was 1.0 for both arms,
+                                                              while AF improved exact/token-F1 label cleanliness.
+                                                            evidence: [C11, C12, "OASIS/ablation-AF/real_model_small_run_notes.md", "OASIS/ablation-AF/decision_suite_raw_real_small.md", "OASIS/ablation-AF/decision_suite_mallm_blackboard_real_small.md"]
+                                                            children:
+                                                              - id: N16
+                                                                type: experiment
+                                                                title: "Run 50-example real-model AF decision tests"
+                                                                provenance: ai-executed
+                                                                timestamp: "2026-06-04T12:50+08:00"
+                                                                result: >
+                                                                  Ran direct vs AF graph comparisons with real
+                                                                  DeepSeek calls on 50 examples each for SCOTUS,
+                                                                  IQ2, CMV, and LongMemEval, plus 50 GPQA and
+                                                                  50 MMLU-Pro examples through the MALLM blackboard
+                                                                  runner. Direct prompting beat AF on SCOTUS
+                                                                  (0.80 vs 0.56), IQ2 (0.88 vs 0.46), CMV
+                                                                  (0.86 vs 0.66), and MALLM blackboard
+                                                                  (0.72 vs 0.65). AF improved only on LongMemEval
+                                                                  (0.68 vs 0.60), supporting a narrower memory-
+                                                                  formalization use case.
+                                                                evidence: [C13, "OASIS/ablation-AF/real_model_50_run_notes.md", "OASIS/ablation-AF/decision_suite_raw_real_50.md", "OASIS/ablation-AF/decision_suite_mallm_blackboard_real_50.md"]
