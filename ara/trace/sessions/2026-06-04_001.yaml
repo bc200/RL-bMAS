@@ -1,0 +1,59 @@
+session:
+  id: "2026-06-04_001"
+  timestamp: "2026-06-04T12:50+08:00"
+  summary: "Ran 50-example real-model AF decision tests and expanded metric reporting."
+
+events_logged:
+  - type: experiment
+    id: "N16"
+    provenance: ai-executed
+    summary: "Completed 50-example direct-vs-AF real DeepSeek tests on raw datasets and MALLM blackboard."
+  - type: claim
+    id: "C11"
+    provenance: ai-suggested
+    summary: "Weakened the MALLM blackboard AF hypothesis after 100-example blackboard run favored direct judging."
+  - type: claim
+    id: "C13"
+    provenance: ai-executed
+    summary: "Created claim that current AF gains are concentrated in LongMemEval memory formalization."
+
+ai_actions:
+  - action: "Added semantic-equivalence metric support and detailed metric definitions to decision reports."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/decision_common.py"
+      - "OASIS/ablation-AF/mallm_gpqa_mmlu_pro/run_mallm_blackboard.py"
+      - "OASIS/ablation-AF/run_decision_suite.py"
+  - action: "Ran raw 50-example direct-vs-AF suite with real DeepSeek calls."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/decision_suite_raw_real_50.md"
+      - "OASIS/ablation-AF/outputs/*_real_50_summary.json"
+  - action: "Ran MALLM blackboard GPQA/MMLU-Pro 50-per-source real DeepSeek test."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/decision_suite_mallm_blackboard_real_50.md"
+      - "OASIS/ablation-AF/outputs/mallm_blackboard_decision_real_50_summary.json"
+  - action: "Wrote consolidated 50-run interpretation notes."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/real_model_50_run_notes.md"
+
+claims_touched:
+  - id: C11
+    action: weakened
+    provenance: ai-suggested
+  - id: C12
+    action: confirmed
+    provenance: ai-suggested
+  - id: C13
+    action: created
+    provenance: ai-executed
+
+open_threads:
+  - "Diagnose why AF graph summaries underperform direct prompting on SCOTUS, IQ2, CMV, and MALLM blackboard."
+  - "Treat LongMemEval memory formalization as the highest-priority next benchmark."
+  - "Consider graph quality metrics and relation-noise audits before further accuracy-only AF comparisons."
+
+ai_suggestions_pending:
+  - "Narrow the paper claim from general AF graph benefit to memory/context-management benefit unless future graph diagnostics reverse the 50-run result."

@@ -1,0 +1,49 @@
+session:
+  id: "2026-06-02_003"
+  timestamp: "2026-06-02T11:19+08:00"
+  summary: "Added DeepSeek direct and multi-agent decision baselines with per-folder reports."
+
+events_logged:
+  - type: experiment
+    id: "N09"
+    provenance: ai-executed
+    summary: "Extended the shared decision runner with DeepSeek defaults, direct-answer and multi-agent arms, folder-local reports, and stricter categorical scoring; mock smokes passed for all six adapters."
+  - type: claim
+    id: "C08"
+    provenance: ai-executed
+    summary: "Decision adapters can now compare direct, AF, QBAF, and direct multi-agent baselines, pending real DeepSeek API runs."
+  - type: heuristic
+    id: "H04"
+    provenance: ai-suggested
+    summary: "Use conservative categorical scoring to avoid accidental short-label hits in long generic answers."
+
+ai_actions:
+  - action: "Updated decision benchmark runner defaults, DeepSeek client configuration, direct-answer baseline, multi-agent proposer/critic/judge baseline, report generation, scoring, README instructions, and regenerated folder reports with mock LLM smoke runs."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/decision_common.py"
+      - "OASIS/ablation-AF/llm_clients.py"
+      - "OASIS/ablation-AF/README.md"
+      - "OASIS/ablation-AF/legal_lar_echr/test_report.md"
+      - "OASIS/ablation-AF/debatebench/test_report.md"
+      - "OASIS/ablation-AF/review_peerread/test_report.md"
+      - "OASIS/ablation-AF/ragtruth/test_report.md"
+      - "OASIS/ablation-AF/memory_longmemeval_v2/test_report.md"
+      - "OASIS/ablation-AF/mallm_gpqa_mmlu_pro/test_report.md"
+      - "ara/logic/claims.md"
+      - "ara/logic/solution/heuristics.md"
+      - "ara/trace/exploration_tree.yaml"
+      - "ara/trace/sessions/session_index.yaml"
+      - "ara/trace/sessions/2026-06-02_003.yaml"
+
+claims_touched:
+  - id: "C08"
+    action: created
+    provenance: ai-executed
+
+open_threads:
+  - "Set DEEPSEEK_API_KEY and run the six adapters on real dataset files without --mock-llm."
+  - "Compare real direct_answer, arguments_only, af_graph, qbaf_graph, and multi_agent metrics per dataset before choosing the primary benchmark."
+
+ai_suggestions_pending:
+  - "Start real API validation with LAR-ECHR and DebateBench, then move to LongMemEval-V2 and MALLM when full interaction/context files are available."

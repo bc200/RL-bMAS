@@ -1,0 +1,47 @@
+session:
+  id: "2026-06-02_006"
+  timestamp: "2026-06-02T14:36+08:00"
+  summary: "Ran real DeepSeek API suite on all AF decision sample projects."
+
+events_logged:
+  - type: experiment
+    id: "N12"
+    provenance: ai-executed
+    summary: "Used local blackboard credentials to run deepseek-chat across all six decision adapters with direct, AF/QBAF, and multi-agent arms."
+  - type: claim
+    id: "C08"
+    provenance: ai-executed
+    summary: "Advanced the implementation claim to supported after real API sample-level suite completion."
+
+ai_actions:
+  - action: "Added controlled local credential discovery, wired --use-local-credentials through the decision runners and suite, validated redacted credential discovery, ran a LAR-ECHR real direct-answer probe, then ran the full real decision suite over all six sample projects."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/credential_discovery.py"
+      - "OASIS/ablation-AF/llm_clients.py"
+      - "OASIS/ablation-AF/decision_common.py"
+      - "OASIS/ablation-AF/run_decision_suite.py"
+      - "OASIS/ablation-AF/README.md"
+      - "OASIS/ablation-AF/decision_suite_report.md"
+      - "OASIS/ablation-AF/legal_lar_echr/test_report.md"
+      - "OASIS/ablation-AF/debatebench/test_report.md"
+      - "OASIS/ablation-AF/review_peerread/test_report.md"
+      - "OASIS/ablation-AF/ragtruth/test_report.md"
+      - "OASIS/ablation-AF/memory_longmemeval_v2/test_report.md"
+      - "OASIS/ablation-AF/mallm_gpqa_mmlu_pro/test_report.md"
+      - "ara/logic/claims.md"
+      - "ara/trace/exploration_tree.yaml"
+      - "ara/trace/sessions/session_index.yaml"
+      - "ara/trace/sessions/2026-06-02_006.yaml"
+
+claims_touched:
+  - id: "C08"
+    action: confirmed
+    provenance: ai-executed
+
+open_threads:
+  - "Scale the same suite command to full external dataset files with --require-inputs when paths are supplied."
+  - "Inspect prompt traces for AF arms that underperform direct_answer on sample rows before scaling."
+
+ai_suggestions_pending:
+  - "Use full external files plus --limit unset or a larger limit for final paper-grade results; current completion is sample-level real API validation."

@@ -1,0 +1,48 @@
+session:
+  id: "2026-06-01_002"
+  timestamp: "2026-06-01T16:20+08:00"
+  summary: "Reframed AF benchmark selection around downstream decisions after graph construction."
+
+events_logged:
+  - type: decision
+    id: "N04"
+    provenance: user
+    summary: "Do not prioritize argument mining itself; evaluate AF as a formalized representation used by downstream decision makers."
+  - type: experiment
+    id: "N05"
+    provenance: ai-executed
+    summary: "Surveyed benchmark families and created an AF decision benchmark recommendation document."
+  - type: claim
+    id: "C03"
+    provenance: user
+    summary: "The validation target is graph-conditioned decision, not argument mining."
+  - type: claim
+    id: "C04"
+    provenance: ai-suggested
+    summary: "Peer review, RAG verification, memory, and generated-agent transcripts are stronger benchmark families."
+
+ai_actions:
+  - action: "Searched current benchmark and dataset sources, re-ranked candidate validation data, and wrote the recommendation report."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/af_decision_benchmark_recommendations.md"
+      - "ara/logic/claims.md"
+      - "ara/logic/solution/heuristics.md"
+      - "ara/trace/exploration_tree.yaml"
+      - "ara/trace/sessions/session_index.yaml"
+      - "ara/trace/sessions/2026-06-01_002.yaml"
+
+claims_touched:
+  - id: "C03"
+    action: created
+    provenance: user
+  - id: "C04"
+    action: created
+    provenance: ai-suggested
+
+open_threads:
+  - "Pick one benchmark family and implement an OASIS dataset adapter plus AF decision arms."
+  - "Decide whether the first experiment should prioritize peer review decisions, RAG verification, or generated multi-agent transcripts."
+
+ai_suggestions_pending:
+  - "Start with peer review decisions if the paper needs a crisp AF-for-decision story; start with RAGTruth/SciFact if evidence grounding is the main claim."

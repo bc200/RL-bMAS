@@ -1,0 +1,43 @@
+session:
+  id: "2026-06-02_002"
+  timestamp: "2026-06-02T11:03+08:00"
+  summary: "Implemented modular AF decision benchmark adapters."
+
+events_logged:
+  - type: experiment
+    id: "N08"
+    provenance: ai-executed
+    summary: "Built shared decision runner and six dataset-specific folders with sample smoke data."
+  - type: claim
+    id: "C07"
+    provenance: ai-executed
+    summary: "OASIS now has modular decision-benchmark adapters for the requested dataset families."
+
+ai_actions:
+  - action: "Created common decision runner, dataset adapters, sample files, READMEs, README integration, and ran syntax/smoke checks."
+    provenance: ai-executed
+    files_changed:
+      - "OASIS/ablation-AF/decision_common.py"
+      - "OASIS/ablation-AF/legal_lar_echr/run_lar_echr.py"
+      - "OASIS/ablation-AF/debatebench/run_debatebench.py"
+      - "OASIS/ablation-AF/review_peerread/run_peerread.py"
+      - "OASIS/ablation-AF/ragtruth/run_ragtruth.py"
+      - "OASIS/ablation-AF/memory_longmemeval_v2/run_longmemeval_v2.py"
+      - "OASIS/ablation-AF/mallm_gpqa_mmlu_pro/run_mallm_gpqa_mmlu_pro.py"
+      - "OASIS/ablation-AF/README.md"
+      - "ara/logic/claims.md"
+      - "ara/trace/exploration_tree.yaml"
+      - "ara/trace/sessions/session_index.yaml"
+      - "ara/trace/sessions/2026-06-02_002.yaml"
+
+claims_touched:
+  - id: "C07"
+    action: created
+    provenance: ai-executed
+
+open_threads:
+  - "Run the adapters on the real external datasets once local dataset files are available."
+  - "Decide whether to implement a true QAF/QBAF solver beyond prompt-level weighted graph use."
+
+ai_suggestions_pending:
+  - "Start real-model testing with LAR-ECHR using --llm-formalizer --llm-relations, then scale to DebateBench and MALLM."
