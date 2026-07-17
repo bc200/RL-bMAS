@@ -16,7 +16,7 @@
     <img src="https://img.shields.io/badge/Twitter-Channel-000000?style=flat-square&logo=x" alt="X Channel"></a>
 </p>
 
-`verl-agent` is an extension of [veRL](https://github.com/volcengine/verl), specifically designed for training **large language model (LLM) agents via reinforcement learning (RL)**. 
+`verl-agent` is an extension of [verl](https://github.com/volcengine/verl), specifically designed for training **large language model (LLM) agents via reinforcement learning (RL)**.
 
 For public-release scope, API credential configuration, and security checks, see [PUBLIC_RELEASE_GUIDE.md](./PUBLIC_RELEASE_GUIDE.md).
 
@@ -27,7 +27,7 @@ Unlike prior approaches that simply concatenate full interaction histories, `ver
 # News
 - [2025.07.02] Add modular memory manager. See [here](./agent_system/memory).
 - [2025.06.12] 7B models released. 
-- [2025.06.03] ***Major update***: Merge all features from the latest [veRL](https://github.com/volcengine/verl). For example, `verl-agent` now supports Qwen3, LoRA, REINFORCE++, and more. Feel free to explore!
+- [2025.06.03] ***Major update***: Merge all features from the latest [verl](https://github.com/volcengine/verl). For example, `verl-agent` now supports Qwen3, LoRA, REINFORCE++, and more. Feel free to explore!
 - [2025.05.22] Add support for RLOO.
 - [2025.05.19] Our paper on GiGPO released. See [link](https://arxiv.org/abs/2505.10978).
 - [2025.05.18] Code released.
@@ -57,7 +57,7 @@ Unlike prior approaches that simply concatenate full interaction histories, `ver
 - [Key Features](#key-features)
 - [Results](#results)  
 - [Installation](#installation)  
-  - [Install veRL](#install-verl)  
+  - [Install verl](#install-verl)
   - [Install Supported Environments](#install-supported-environments)  
     - [1. ALFWorld](#1-alfworld)  
     - [2. WebShop](#2-webshop)  
@@ -139,7 +139,7 @@ Unlike prior approaches that simply concatenate full interaction histories, `ver
 We have released our models on [HuggingFace](https://huggingface.co/collections/langfeng01/verl-agent-684970e8f51babe2a6d98554).
 
 # Installation
-## Install veRL
+## Install verl
 ```bash
 conda create -n verl-agent python==3.12 -y
 conda activate verl-agent
@@ -369,7 +369,7 @@ Example contributions include:
 
 # Acknowledgement
 
-We gratefully acknowledge the contributions of the [veRL](https://github.com/volcengine/verl) team for providing a solid RL infrastructure.
+We gratefully acknowledge the contributions of the [verl](https://github.com/volcengine/verl) team for providing a solid RL infrastructure.
 
 Special thanks to the [RAGEN](https://github.com/RAGEN-AI/RAGEN) project for their codebase, which inspired early design choices during the development of `verl-agent`.
 

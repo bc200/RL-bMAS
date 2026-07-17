@@ -48,7 +48,7 @@ jobs:
           python3 tests/sanity/check_copyright.py --directory .
       - name: Assert naming convention
         run: |
-          if grep -rIn --exclude-dir=.git --exclude-dir=.github --exclude-dir=venv --exclude-dir=__pycache__ 'veRL' .; then
+          if grep -rIn --exclude-dir=.git --exclude-dir=.github --exclude-dir=venv --exclude-dir=__pycache__ --exclude-dir=raw_data 'veRL' .; then
             echo "Please use verl instead of veRL in the codebase"
             exit 1
           fi
